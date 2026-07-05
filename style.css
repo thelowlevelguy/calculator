@@ -20,12 +20,16 @@ body{
 }
 #screen{
 	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
 	background-color: white;
 	width:360px;
 	height: 100px;
+	padding: 5px;
 	margin-bottom: 30px;
 	border-radius: 10px;
 	color:black;
+	font-size: 32px;
 }
 #buttons{
 	display: flex;
