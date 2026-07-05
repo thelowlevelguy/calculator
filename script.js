@@ -2,7 +2,6 @@ const add = (a, b) => a + b;
 const sub = (a, b) => a - b;
 const mul = (a ,b) => a * b;
 const div = (a, b) => b > 0 ? a / b : 0;
-
 const buttons = document.querySelectorAll(".button");
 const equalButton = document.querySelector('#equal')
 const clearButton = document.getElementById("clear")
@@ -63,6 +62,13 @@ const processInput = () => {
 	}
 }
 
+const backSpace = () => {
+	const str = resultBoard.textContent
+	const len = str.length;
+	resultBoard.textContent = str.slice(0, len-1)
+	console.log(resultBoard.textContent)
+}
+
 const displayInput = (event) => {
 	if (isResultDisplayed){
 		clearBoard()
@@ -79,5 +85,40 @@ buttons.forEach((button) => {
 	button.addEventListener('click', displayInput)
 })
 
+const processKeyboard = (event) => {
+	if (isResultDisplayed){
+		clearBoard()
+		isResultDisplayed = false;
+	}
+	 const keyCode = event.key;
+	 switch(keyCode){
+	 case "1":
+	 case "2":
+	 case "3":
+	 case "4":
+	 case "5":
+	 case "6":
+	 case "7":
+	 case "8":
+	 case "9":
+	 case "0":
+	 case "+":
+	 case "-":
+	 case "*":
+	 case "/":
+	 	resultBoard.textContent += keyCode;
+	 	break;
+	 case "Enter":
+	 	processInput();
+	 	break;
+	 case "Backspace":
+	 	backSpace();
+	 	break;
+	 default:
+	 	return;
+	 }
+}
+
+document.addEventListener("keydown" , processKeyboard)
 equalButton.addEventListener("click", processInput)
 clearButton.addEventListener("click", clearBoard)
